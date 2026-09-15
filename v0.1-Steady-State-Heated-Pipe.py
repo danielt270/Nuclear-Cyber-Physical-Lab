@@ -35,7 +35,7 @@ ASSUMPTIONS:
                          
 EQUATIONS:
     Specific heat equation:
-        Q = m_dot * Cp * (T_out - T_in)                  
+        Q = m_dot * Cp(T_out - T_in)                  
 
 INPUTS:
     - inletTemp: The inlet temperature of water in °C

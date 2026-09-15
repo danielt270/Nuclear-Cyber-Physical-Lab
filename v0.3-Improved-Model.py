@@ -41,7 +41,7 @@ EQUATIONS:
         dE/dt = Q̇_heater - Q̇_loss + ṁ(h_in - h_out)
 
     Heat Loss:
-        Q̇_loss = UA(T - T_surr)
+        Q̇_loss = U * A(T - T_surr)
 
     Fluid Properties:
         h = h(T,P)

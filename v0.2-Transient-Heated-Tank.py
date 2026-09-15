@@ -37,7 +37,7 @@ ASSUMPTIONS:
 
 EQUATIONS:
     Transient Energy Balance:
-        dT/dt(m * Cp) = Q̇ + ṁ_in * Cp * (T_in - T)
+        dT/dt(m * Cp) = Q̇ + ṁ_in * Cp(T_in - T)
 
     Numerical Integration:
         T_(n+1) = T_n + dT/dt * dt
