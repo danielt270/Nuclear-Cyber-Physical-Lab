@@ -28,8 +28,9 @@ ASSUMPTIONS:
     - tank is well-mixed
     - transient state
     - constant tank mass
+    - constant mass flow rate
     - constant pressure
-    - single phase water
+    - single-phase water
     - adiabatic
 
 EQUATIONS:
