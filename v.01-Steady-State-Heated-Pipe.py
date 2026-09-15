@@ -8,7 +8,8 @@ OVERVIEW:
     continuously flowing water based on its inlet temperature, mass flow rate, and applied heater power. 
     The model will then be expanded into a transient tank, introducing stored mass and temperature changes.
 
-MODEL: Water flows continuously through a heated section
+MODEL: 
+    Water flows continuously through a heated section
 
                        Heater
                          ↓
