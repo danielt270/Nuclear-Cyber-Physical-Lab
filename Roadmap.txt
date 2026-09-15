@@ -5,6 +5,7 @@ Goal: Establish the basic thermodynamics before introducing dynamics or control.
 ✓ v0.1 — Steady-State Heated Pipe ✓
 
 Water flowing continuously through a heated section
+
 Inlet temperature
 Mass flow rate
 Heater power
@@ -12,14 +13,18 @@ CoolProp thermodynamic properties
 Calculate outlet temperature
 Steady-state energy balance
 
+Calculates Tempearture change through section
+
 v0.2 — Transient Heated Tank
 
-Introduce a finite volume of water
+Introduce a finite volume of water under transient conditions
+
 Stored mass and energy
-Temperature becomes \(T(t)\)
+Temperature becomes T(t)
 Heater turns on/off over time
 Numerical time integration
-Inlet/outlet flow
+
+Calculates rate of temperature change through tank
 
 v0.3 — Improved Thermal/Fluid Model
 

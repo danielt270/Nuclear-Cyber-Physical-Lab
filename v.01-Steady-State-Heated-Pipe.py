@@ -69,7 +69,6 @@ def main():
     print(f"\nSpecific Heat Capacity of Water: {cp:.2f} J/(kg·K)")
     print(f"Outlet Temperature: {outletTemp:.2f} °C")
 
-
 if __name__ == "__main__":
     main()
 
