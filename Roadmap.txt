@@ -2,7 +2,7 @@ PHASE 1 — Fundamental Thermal Model
 
 Goal: Establish the basic thermodynamics before introducing dynamics or control.
 
-v0.1 — Steady-State Heated Pipe
+✓ v0.1 — Steady-State Heated Pipe ✓
 
 Water flowing continuously through a heated section
 Inlet temperature
