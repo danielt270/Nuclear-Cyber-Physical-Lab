@@ -32,6 +32,7 @@ ASSUMPTIONS:
     - constant pressure
     - single-phase water
     - adiabatic
+    - kinetic and potential energy changes are negligible
 
 EQUATIONS:
     Transient Energy Balance:

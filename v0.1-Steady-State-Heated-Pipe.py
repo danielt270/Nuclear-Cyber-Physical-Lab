@@ -30,6 +30,7 @@ ASSUMPTIONS:
     - adiabatic
     - constant mass flow rate
     - single-phase water
+    - kinetic and potential energy changes are negligible
                          
 EQUATIONS:
     Specific heat equation:
