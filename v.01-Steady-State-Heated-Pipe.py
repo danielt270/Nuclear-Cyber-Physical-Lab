@@ -28,7 +28,7 @@ ASSUMPTIONS:
     - constant pressure
     - adiabatic
     - constant mass
-    - single-phase 
+    - single-phase water
                          
 EQUATIONS:
     Specific heat equation:
