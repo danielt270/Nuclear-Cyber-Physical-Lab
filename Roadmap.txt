@@ -15,7 +15,7 @@ Steady-state energy balance
 
 Calculates Tempearture change through section
 
-v0.2 — Transient Heated Tank
+✓ v0.2 — Transient Heated Tank ✓
 
 Introduce a finite volume of water under transient conditions
 
