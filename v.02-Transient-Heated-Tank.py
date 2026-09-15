@@ -34,7 +34,7 @@ ASSUMPTIONS:
 
 EQUATIONS:
     Transient Energy Balance:
-        dT/dt = (Q̇ + ṁ_in * Cp * (T_in - T)) / (m * Cp)
+        dT/dt(m * Cp) = Q̇ + ṁ_in * Cp * (T_in - T)
 
     Numerical Integration:
         T_(n+1) = T_n + dT/dt * dt
@@ -51,3 +51,43 @@ INPUTS:
 OUTPUT:
     - tankTemp: The temperature of the water in the tank as a function of time
 """
+
+import CoolProp.CoolProp as CP
+
+# Constants
+PRESSURE           = 101325   # Pa
+FLUID              = "Water"
+
+# Inputs
+initialTemp    = float(input("Enter the initial temperature of the water in the tank (°C): "))
+tankMass       = float(input("Enter the mass of water in the tank (kg): "))
+inletTemp      = float(input("Enter the inlet temperature of the coolant (°C): "))
+massFlowRate   = float(input("Enter the mass flow rate of the coolant (kg/s): "))
+heaterPower    = float(input("Enter the heater power (W): "))
+simulationTime = float(input("Enter the total simulation time (s): "))
+timeStep       = float(input("Enter the simulation timestep (s): "))
+
+def main():
+    # Calculate the number of simulation steps
+    numSteps = int(simulationTime / timeStep)
+
+    # Initialize tank temperature
+    tankTemp = initialTemp  
+
+    # Calculate the temperature at each timestep
+    for i in range(1, numSteps + 1):
+        # Get specific heat capacity of the fluid at the current tank temperature
+        cp = CP.PropsSI('C', 'T', tankTemp + 273.15, 'P', PRESSURE, FLUID)  # J/(kg·K)
+
+        # Calculate the rate of temperature change
+        dTdt = (heaterPower + massFlowRate * cp * (inletTemp - tankTemp)) / (tankMass * cp)
+
+        # Calculate tank temperature at the next timestep using numerical integration formula
+        tankTemp = tankTemp + dTdt * timeStep
+
+        print(f"\nSpecific Heat Capacity of Water: {cp:.2f} J/(kg·K)")
+        print(f"Rate of temperature change: {dTdt:.2e} °C/s")
+        print(f"Time: {i * timeStep:.2f} s, Tank Temperature: {tankTemp:.2f} °C\n")
+
+if __name__ == "__main__":
+    main()
