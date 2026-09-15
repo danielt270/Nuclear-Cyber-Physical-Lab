@@ -47,7 +47,7 @@ OUTPUT:
 
 import CoolProp.CoolProp as CP
 
-# Plant Parameters
+# Constants
 PRESSURE           = 101325   # Pa
 FLUID              = "Water"
 
