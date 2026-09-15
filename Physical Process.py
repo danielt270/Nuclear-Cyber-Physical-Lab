@@ -32,7 +32,7 @@ ASSUMPTIONS:
                          
 EQUATIONS:
     Specific heat equation:
-    Q = m_dot * Cp * (T_out - T_in)                  
+        Q = m_dot * Cp * (T_out - T_in)                  
 
 INPUTS:
     - inletTemp: The inlet temperature of water in °C
@@ -40,7 +40,7 @@ INPUTS:
     - heaterPower: The power of the heater in W
 
 OUTPUT:
-    TemperatureOutlet: The temperature of the coolant after passing through the heater and cooler.
+    - outletTemp: The temperature of the coolant after passing through the heater and cooler.
 ============================================================================================================
 """
 
