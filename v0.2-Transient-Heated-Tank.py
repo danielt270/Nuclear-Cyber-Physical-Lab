@@ -53,6 +53,8 @@ INPUTS:
 
 OUTPUT:
     - tankTemp: The temperature of the water in the tank as a function of time
+    - dTdt: The rate of temperature change of the water in the tank as a function of time
+    - cp: The specific heat capacity of the water as a function of time
 """
 
 import CoolProp.CoolProp as CP

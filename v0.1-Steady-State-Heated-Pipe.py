@@ -44,6 +44,7 @@ INPUTS:
 
 OUTPUT:
     - outletTemp: The temperature of the coolant after passing through the heater and cooler.
+    - cp: The specific heat capacity of the water as a function of time
 ============================================================================================================
 """
 
