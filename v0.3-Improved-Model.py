@@ -28,6 +28,9 @@ MODEL:
                             Q̇_loss
                               ↓
                          
+                            where    
+                         ṁ_in = ṁ_out
+                              
 ASSUMPTIONS:
     - tank is well-mixed
     - transient state
