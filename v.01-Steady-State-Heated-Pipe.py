@@ -27,7 +27,7 @@ ASSUMPTIONS:
     - steady state
     - constant pressure
     - adiabatic
-    - steady flow
+    - constant mass
     - single-phase 
                          
 EQUATIONS:
