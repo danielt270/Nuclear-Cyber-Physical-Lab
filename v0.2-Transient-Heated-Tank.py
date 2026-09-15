@@ -12,17 +12,17 @@ MODEL:
     Water is stored and flows continuously through a well-mixed heated tank, with its temperature 
     changing over time.
 
-                  Heater
-                    Q̇
-                    ↓
-              ┌─────────────┐
-              │             │
-      ṁ_in →  │    WATER    │ → ṁ_out
-      T_in    │     T(t)    │   T_out
-              │             │
-              └─────────────┘
-                   where    
-                ṁ_in = ṁ_out
+                            Heater
+                              Q̇
+                              ↓
+                     ┌─────────────────┐
+                     │                 │
+           ṁ_in → ───┘      WATER      └─── → ṁ_out
+           T_in   ───┐       T(t)      ┌───  T_out
+                     │                 │
+                     └─────────────────┘
+                            where    
+                         ṁ_in = ṁ_out
 
 ASSUMPTIONS:
     - tank is well-mixed
