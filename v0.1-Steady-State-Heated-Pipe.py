@@ -12,13 +12,12 @@ MODEL:
     Water flows continuously through a heated section
 
                                Heater
-                                 ↓
-                          Q̇ = heater power
+                                 Q̇ 
                                  │
                                  │
                   ───────────────▼───────────────
                                                
-        ṁ_in ───→          HEATED WATER           ───→ ṁ_out
+        ṁ_in ───→              WATER              ───→ ṁ_out
         T_in                                           T_out
                   ───────────────────────────────
                                where    
