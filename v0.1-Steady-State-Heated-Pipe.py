@@ -16,11 +16,11 @@ MODEL:
                   Q̇ = heater power
                          │
                          │
-         ┌───────────────▼───────────────┐
-         │                               │      
-ṁ_in ───→│        HEATED WATER           │───→ ṁ_out
-T_in     │                               │     T_out
-         └───────────────────────────────┘
+          ───────────────▼───────────────
+                                               
+ṁ_in ───→          HEATED WATER           ───→ ṁ_out
+T_in                                           T_out
+          ───────────────────────────────
                        where    
                     ṁ_in = ṁ_out
     
@@ -28,7 +28,7 @@ ASSUMPTIONS:
     - steady state
     - constant pressure
     - adiabatic
-    - constant mass
+    - constant mass flow rate
     - single-phase water
                          
 EQUATIONS:
