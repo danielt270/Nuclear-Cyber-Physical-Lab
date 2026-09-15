@@ -30,6 +30,7 @@ ASSUMPTIONS:
     - constant tank mass
     - constant mass flow rate
     - constant pressure
+    - constant fluid properties
     - single-phase water
     - adiabatic
     - kinetic and potential energy changes are negligible

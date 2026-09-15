@@ -29,6 +29,7 @@ ASSUMPTIONS:
     - constant pressure
     - adiabatic
     - constant mass flow rate
+    - constant fluid properties
     - single-phase water
     - kinetic and potential energy changes are negligible
                          
