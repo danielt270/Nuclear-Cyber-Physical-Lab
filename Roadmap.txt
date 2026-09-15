@@ -13,7 +13,7 @@ CoolProp thermodynamic properties
 Calculate outlet temperature
 Steady-state energy balance
 
-Calculates Tempearture change through section
+Calculates tempearture change through section
 
 ✓ v0.2 — Transient Heated Tank ✓
 
@@ -21,18 +21,18 @@ Introduce a finite volume of water under transient conditions
 
 Stored mass and energy
 Temperature becomes T(t)
-Heater turns on/off over time
+Heater power applied over time
 Numerical time integration
 
 Calculates rate of temperature change through tank
 
-v0.3 — Improved Thermal/Fluid Model
+v0.3 — Improved Model
 
-More realistic fluid properties
+Fluid properties now change over time
 Pressure as a state/parameter
-Heat losses
-Flow and thermal behavior coupled together
-Basic physical limits and sanity checks
+Heat losses due to surroundings
+
+Calculates the... [FINISH]
 
 PHASE 2 — Build a Real Plant System
 
