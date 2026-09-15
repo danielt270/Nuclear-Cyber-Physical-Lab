@@ -11,18 +11,18 @@ OVERVIEW:
 MODEL: 
     Water flows continuously through a heated section
 
-                       Heater
-                         ↓
-                  Q̇ = heater power
-                         │
-                         │
-          ───────────────▼───────────────
+                               Heater
+                                 ↓
+                          Q̇ = heater power
+                                 │
+                                 │
+                  ───────────────▼───────────────
                                                
-ṁ_in ───→          HEATED WATER           ───→ ṁ_out
-T_in                                           T_out
-          ───────────────────────────────
-                       where    
-                    ṁ_in = ṁ_out
+        ṁ_in ───→          HEATED WATER           ───→ ṁ_out
+        T_in                                           T_out
+                  ───────────────────────────────
+                               where    
+                            ṁ_in = ṁ_out
     
 ASSUMPTIONS:
     - steady state
