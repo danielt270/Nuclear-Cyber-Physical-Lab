@@ -4,7 +4,7 @@ Goal: Establish the basic thermodynamics before introducing dynamics or control.
 
 ✓ v0.1 — Steady-State Heated Pipe ✓
 
-Water flowing continuously through a heated section
+Water with constant properties flowing continuously through a heated section
 
 Inlet temperature
 Mass flow rate
@@ -13,26 +13,28 @@ CoolProp thermodynamic properties
 Calculate outlet temperature
 Steady-state energy balance
 
-Calculates tempearture change through section
+Calculates tempearture after going through the heated section
 
 ✓ v0.2 — Transient Heated Tank ✓
 
-Introduce a finite volume of water under transient conditions
+Introduces a finite volume of water with constant properties under transient conditions
 
 Stored mass and energy
 Temperature becomes T(t)
 Heater power applied over time
 Numerical time integration
 
-Calculates rate of temperature change through tank
+Calculates rate of temperature change through tank & final temperature
 
 v0.3 — Improved Model
 
+Introduces more realistic behavior through variable fluid properties and heat loss
+
 Fluid properties now change over time
-Pressure as a state/parameter
+Enthalpy & internal energy as a state/parameter
 Heat losses due to surroundings
 
-Calculates the... [FINISH]
+Calculates the rate of energy change & final temperature
 
 PHASE 2 — Build a Real Plant System
 
