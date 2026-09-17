@@ -129,7 +129,7 @@ def main():
         print(f"Rate of Energy Change: {energyRate:.2e} W")
         print(f"Tank Temperature: {tankTemp:.2f} °C")
 
-        # ADVANCES FROM n to n+1 HERE
+        # ADVANCES FROM n TO n+1 HERE
         # Update total tank energy using numerical integration (Eqn. 4)
         tankEnergy = tankEnergy + energyRate * timeStep
 

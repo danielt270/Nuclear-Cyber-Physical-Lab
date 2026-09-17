@@ -92,7 +92,7 @@ def main():
         print(f"Rate of temperature change: {dTdt:.2e} °C/s")
         print(f"Tank Temperature: {tankTemp:.2f} °C")
 
-        # ADVANCES FROM n to n+1 HERE
+        # ADVANCES FROM n TO n+1 HERE
         # Calculate tank temperature at the next timestep using numerical integration formula
         tankTemp = tankTemp + dTdt * timeStep
 
