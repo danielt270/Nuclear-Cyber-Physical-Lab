@@ -38,7 +38,7 @@ Calculates the rate of energy change & final temperature
 
 PHASE 2 — Build a Real Plant System
 
-Goal: Move from one component to interacting physical components.
+Goal: Move from thermal/fluid physics to interacting physical components.
 
 v0.4 — Pump & Flow System
 
