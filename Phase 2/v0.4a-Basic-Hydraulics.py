@@ -10,13 +10,11 @@ MODEL:
     Water flows steadily through a pipe with a specified diameter and length. The mass flow rate determines the average fluid velocity, while the pipe geometry and flow regime determine the pressure loss caused by friction.
 
             ṁ  ──────────────────────────────────────→
-
             ──────────────────────────────────────────   ↕
                                                          │
                                 PIPE                     D
                                                          │
-            ──────────────────────────────────────────   ↕
-                                                        
+            ──────────────────────────────────────────   ↕                                                  
             │<----------------  L  ------------------>│
                               
 ASSUMPTIONS:
@@ -138,7 +136,7 @@ def main():
     print(f"Reynolds Number: {reynoldsNumber:.1f}")
     print(f"Flow Regime: {flowRegime}")
     print(f"Friction Factor: {frictionFactor:.6f}")
-    print(f"Pressure Drop:  {pressureDrop:.2f} Pa")
+    print(f"Pressure Drop: {pressureDrop:.2f} Pa")
     print(f"Volumetric Flow Rate: {volumetricFlowRate:.6f} m³/s")
     print(f"Hydraulic Power: {hydraulicPower:.2f} W")
 
