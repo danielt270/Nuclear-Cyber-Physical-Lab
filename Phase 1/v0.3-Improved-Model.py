@@ -4,9 +4,7 @@ PHASE 1 — v0.3
 IMPROVED MODEL
 ============================================================================================================
 OVERVIEW: 
-    Improves the physical model by introducing more realistic fluid properties, pressure, heat losses, and 
-    physical limits. The goal is to move beyond the idealized tank model while keeping the system simple 
-    enough to understand and validate.
+    Improves the physical model by introducing more realistic fluid properties and heat losses. The goal is to move beyond the idealized tank model while keeping the system simple enough to understand and validate.
 
 MODEL: 
     Water is stored in a well-mixed heated tank and flows continuously through the system. The tank 
