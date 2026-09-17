@@ -40,20 +40,21 @@ ASSUMPTIONS:
     - kinetic and potential energy changes are negligible
 
 EQUATIONS:
-    Transient Energy Balance:
+    Transient Energy Balance (Eqn. 1):
         dE/dt = Q̇_heater - Q̇_loss + ṁ(h_in - h_out)
 
-    Heat Loss:
+    Heat Loss (Eqn. 2):
         Q̇_loss = U * A(T - T_surr)
 
-    Fluid Properties:
+    Fluid Properties (Eqn. 3):
         h = h(T,P)
         u = u(T,P)
-        ρ = ρ(T,P)
-        Cp = Cp(T,P)
 
-    Numerical Integration:
-        T_(n+1) = T_n + dT/dt * dt
+    Numerical Integration (Eqn. 4):
+        U_(n+1) = U_n + dU/dt * dt
+    
+    Specific Internal Energy (Eqn. 5):
+        u = U/m
 
 INPUTS:
     - initialTemp: The initial temperature of water in the tank in °C
@@ -84,20 +85,59 @@ TANK_AREA          = 1.0      # m²
 U_COEFF            = 1.0      # W/(m²·K) - Overall heat transfer coefficient
 
 # Inputs
+surrTemp       = float(input("Enter the surrounding temperature (°C): "))
 initialTemp    = float(input("Enter the initial temperature of the water in the tank (°C): "))
-tankMass       = float(input("Enter the mass of water in the tank (kg): "))
 inletTemp      = float(input("Enter the inlet temperature of the coolant (°C): "))
+tankMass       = float(input("Enter the mass of water in the tank (kg): "))
 massFlowRate   = float(input("Enter the mass flow rate of the coolant (kg/s): "))
 heaterPower    = float(input("Enter the heater power (W): "))
-surrTemp       = float(input("Enter the surrounding temperature in °C: "))
 simulationTime = float(input("Enter the total simulation time (s): "))
 timeStep       = float(input("Enter the simulation timestep (s): "))
 
 def main():
+    # Calculate the number of simulation steps
+    numSteps = int(simulationTime / timeStep)
 
+    # Initialize tank temperature
+    tankTemp = initialTemp  
 
+    # Get inlet specific enthalpy (h_i)
+    inletEnthalpy = CP.PropsSI('H', 'T', inletTemp + 273.15, 'P', PRESSURE, FLUID)  # J/kg
 
+    # Get initial specific internal energy
+    internalEnergy = CP.PropsSI('U', 'T', tankTemp + 273.15, 'P', PRESSURE, FLUID)  # J/kg
 
+    # Calculate total internal energy stored in the tank
+    tankEnergy = tankMass * internalEnergy
+
+    # Calculate the temperature at each timestep
+    for i in range(numSteps + 1):
+        # Get fluid properties at the current tank temperature (Eqn. 3)
+        enthalpy = CP.PropsSI('H', 'T', tankTemp + 273.15, 'P', PRESSURE, FLUID)  # J/kg
+        internalEnergy = CP.PropsSI('U', 'T', tankTemp + 273.15, 'P', PRESSURE,FLUID)  # J/kg
+
+        # Calculate heat loss to the surroundings (Eqn. 2)
+        heatLoss = U_COEFF * TANK_AREA * (tankTemp - surrTemp)
+
+        # Calculate the rate of energy entering/leaving the tank (Eqn. 1)
+        energyRate = heaterPower - heatLoss + massFlowRate * (inletEnthalpy - enthalpy)
+
+        print(f"\nTime: {i * timeStep:.2f} s")
+        print(f"Enthalpy: {enthalpy:.2f} J/kg")
+        print(f"Internal Energy: {internalEnergy:.2f} J/kg")
+        print(f"Heat Loss: {heatLoss:.2f} W")
+        print(f"Rate of Energy Change: {energyRate:.2e} W")
+        print(f"Tank Temperature: {tankTemp:.2f} °C")
+
+        # ADVANCES FROM n to n+1 HERE
+        # Update total tank energy using numerical integration (Eqn. 4)
+        tankEnergy = tankEnergy + energyRate * timeStep
+
+        # Calculate the new specific internal energy (Eqn. 5)
+        internalEnergy = tankEnergy / tankMass
+
+        # Calculate the new tank temperature from internal energy
+        tankTemp = CP.PropsSI('T', 'U', internalEnergy, 'P', PRESSURE, FLUID) - 273.15
 
 if __name__ == "__main__":
     main()
