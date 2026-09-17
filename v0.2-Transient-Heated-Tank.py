@@ -83,16 +83,18 @@ def main():
     cp = CP.PropsSI('C', 'T', tankTemp + 273.15, 'P', PRESSURE, FLUID)  # J/(kg·K)
 
     # Calculate the temperature at each timestep
-    for i in range(1, numSteps + 1):
+    for i in range(numSteps + 1):
         # Calculate the rate of temperature change
         dTdt = (heaterPower + massFlowRate * cp * (inletTemp - tankTemp)) / (tankMass * cp)
 
+        print(f"\nTime: {i * timeStep:.2f} s")
+        print(f"Specific Heat Capacity of Water: {cp:.2f} J/(kg·K)")
+        print(f"Rate of temperature change: {dTdt:.2e} °C/s")
+        print(f"Tank Temperature: {tankTemp:.2f} °C")
+
+        # ADVANCES FROM n to n+1 HERE
         # Calculate tank temperature at the next timestep using numerical integration formula
         tankTemp = tankTemp + dTdt * timeStep
-
-        print(f"\nSpecific Heat Capacity of Water: {cp:.2f} J/(kg·K)")
-        print(f"Rate of temperature change: {dTdt:.2e} °C/s")
-        print(f"Time: {i * timeStep:.2f} s, Tank Temperature: {tankTemp:.2f} °C\n")
 
 if __name__ == "__main__":
     main()
