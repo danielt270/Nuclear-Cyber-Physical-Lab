@@ -26,7 +26,7 @@ Numerical time integration
 
 Calculates rate of temperature change through tank & final temperature
 
-v0.3 — Improved Model
+✓ v0.3 — Improved Model ✓
 
 Introduces more realistic behavior through variable fluid properties and heat loss
 
