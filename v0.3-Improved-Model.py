@@ -81,8 +81,8 @@ import CoolProp.CoolProp as CP
 # Constants
 PRESSURE           = 101325   # Pa
 FLUID              = "Water"
-TANK_AREA          = 1.0      # m²
-U_COEFF            = 1.0      # W/(m²·K) - Overall heat transfer coefficient
+TANK_AREA          = 1      # m²
+U_COEFF            = 10      # W/(m²·K) - Overall heat transfer coefficient
 
 # Inputs
 surrTemp       = float(input("Enter the surrounding temperature (°C): "))
@@ -117,10 +117,10 @@ def main():
         internalEnergy = CP.PropsSI('U', 'T', tankTemp + 273.15, 'P', PRESSURE,FLUID)  # J/kg
 
         # Calculate heat loss to the surroundings (Eqn. 2)
-        heatLoss = U_COEFF * TANK_AREA * (tankTemp - surrTemp)
+        heatLoss = U_COEFF * TANK_AREA * (tankTemp - surrTemp) # W
 
         # Calculate the rate of energy entering/leaving the tank (Eqn. 1)
-        energyRate = heaterPower - heatLoss + massFlowRate * (inletEnthalpy - enthalpy)
+        energyRate = heaterPower - heatLoss + massFlowRate * (inletEnthalpy - enthalpy) # W
 
         print(f"\nTime: {i * timeStep:.2f} s")
         print(f"Enthalpy: {enthalpy:.2f} J/kg")
