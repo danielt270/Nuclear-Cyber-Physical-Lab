@@ -87,6 +87,7 @@ def main():
         # Calculate the rate of temperature change
         dTdt = (heaterPower + massFlowRate * cp * (inletTemp - tankTemp)) / (tankMass * cp)
 
+        # Outputs
         print(f"\nTime: {i * timeStep:.2f} s")
         print(f"Specific Heat Capacity of Water: {cp:.2f} J/(kg·K)")
         print(f"Rate of temperature change: {dTdt:.2e} °C/s")

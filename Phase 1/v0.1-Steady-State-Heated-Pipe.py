@@ -68,6 +68,7 @@ def main():
     # Calculate the outlet temperature using the specific heat equation
     outletTemp = inletTemp + deltaT
 
+    # Outputs
     print(f"\nSpecific Heat Capacity of Water: {cp:.2f} J/(kg·K)")
     print(f"Outlet Temperature: {outletTemp:.2f} °C")
 

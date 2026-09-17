@@ -120,6 +120,7 @@ def main():
         # Calculate the rate of energy entering/leaving the tank (Eqn. 1)
         energyRate = heaterPower - heatLoss + massFlowRate * (inletEnthalpy - enthalpy) # W
 
+        # Outputs
         print(f"\nTime: {i * timeStep:.2f} s")
         print(f"Enthalpy: {enthalpy:.2f} J/kg")
         print(f"Internal Energy: {internalEnergy:.2f} J/kg")
