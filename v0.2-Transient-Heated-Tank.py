@@ -79,11 +79,11 @@ def main():
     # Initialize tank temperature
     tankTemp = initialTemp  
 
+    # Get specific heat capacity of the fluid at the current tank temperature
+    cp = CP.PropsSI('C', 'T', tankTemp + 273.15, 'P', PRESSURE, FLUID)  # J/(kg·K)
+
     # Calculate the temperature at each timestep
     for i in range(1, numSteps + 1):
-        # Get specific heat capacity of the fluid at the current tank temperature
-        cp = CP.PropsSI('C', 'T', tankTemp + 273.15, 'P', PRESSURE, FLUID)  # J/(kg·K)
-
         # Calculate the rate of temperature change
         dTdt = (heaterPower + massFlowRate * cp * (inletTemp - tankTemp)) / (tankMass * cp)
 
