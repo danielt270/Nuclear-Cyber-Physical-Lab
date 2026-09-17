@@ -79,8 +79,8 @@ import CoolProp.CoolProp as CP
 # Constants
 PRESSURE           = 101325   # Pa
 FLUID              = "Water"
-TANK_AREA          = 1      # m²
-U_COEFF            = 10      # W/(m²·K) - Overall heat transfer coefficient
+TANK_AREA          = 1        # m²
+U_COEFF            = 10       # W/(m²·K) - Overall heat transfer coefficient
 
 # Inputs
 surrTemp       = float(input("Enter the surrounding temperature (°C): "))
