@@ -58,13 +58,10 @@ EQUATIONS:
 INPUTS:
     - initialTemp: The initial temperature of water in the tank in °C
     - tankMass: The mass of water contained in the tank in kg
-    - pressure: The pressure of the water in Pa
     - inletTemp: The inlet temperature of water in °C
     - massFlowRate: The mass flow rate of water in kg/s
     - heaterPower: The power supplied by the heater in W
-    - ambientTemp: The ambient temperature surrounding the tank in °C
-    - U: The overall heat transfer coefficient between the tank and surroundings in W/(m²·K)
-    - tankArea: The surface area of the tank exposed to the surroundings in m²
+    - surrTemp: The surrounding temperature in °C
     - simulationTime: The total simulation time in seconds
     - timeStep: The simulation timestep in seconds
 
@@ -77,3 +74,30 @@ OUTPUT:
     - cp: The specific heat capacity of the water as a function of time
     - pressure: The pressure of the water in the tank
 """
+
+import CoolProp.CoolProp as CP
+
+# Constants
+PRESSURE           = 101325   # Pa
+FLUID              = "Water"
+TANK_AREA          = 1.0      # m²
+U_COEFF            = 1.0      # W/(m²·K) - Overall heat transfer coefficient
+
+# Inputs
+initialTemp    = float(input("Enter the initial temperature of the water in the tank (°C): "))
+tankMass       = float(input("Enter the mass of water in the tank (kg): "))
+inletTemp      = float(input("Enter the inlet temperature of the coolant (°C): "))
+massFlowRate   = float(input("Enter the mass flow rate of the coolant (kg/s): "))
+heaterPower    = float(input("Enter the heater power (W): "))
+surrTemp       = float(input("Enter the surrounding temperature in °C: "))
+simulationTime = float(input("Enter the total simulation time (s): "))
+timeStep       = float(input("Enter the simulation timestep (s): "))
+
+def main():
+
+
+
+
+
+if __name__ == "__main__":
+    main()
