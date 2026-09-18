@@ -4,7 +4,7 @@ PHASE 2 — v0.4a
 BASIC HYDRAULICS
 ============================================================================================================
 OVERVIEW: 
-    The goal is to determine how flow rate, pipe geometry, fluid properties, and friction affect the pressure of a pipe system. Here we account for laminar and tubulent phases with major losses included and minor losses neglected.
+    The goal is to determine how flow rate, pipe geometry, fluid properties, and friction affect the pressure drop and hydraulic power of a pipe system. Here we account for laminar and tubulent phases with major losses included and minor losses neglected.
 
 MODEL: 
     Water flows steadily through a pipe with a specified diameter and length. The mass flow rate determines the average fluid velocity, while the pipe geometry and flow regime determine the pressure loss caused by friction.
@@ -28,35 +28,32 @@ ASSUMPTIONS:
     - mass flow rate is specified directly
 
 EQUATIONS:
-    Mass Flow / Velocity Relationship (Eqn. 1):
-        ṁ = ρ * A * v
-
-    Pipe Cross-Sectional Area (Eqn. 2):
+    Pipe Cross-Sectional Area (Eqn. 1):
         A = πD² / 4
 
-    Fluid Velocity (Eqn. 3):
+    Fluid Velocity (Eqn. 2):
         v = ṁ / (ρ * A)
 
-    Reynolds Number (Eqn. 4):
+    Reynolds Number (Eqn. 3):
         Re = ρvD / μ
 
-    Darcy-Weisbach Pressure Loss (Eqn. 5):
+    Darcy-Weisbach Pressure Loss (Eqn. 4):
         ΔP = f(L/D)(ρ * v² / 2)
 
-    Laminar Friction Factor (Eqn. 6):
+    Laminar Friction Factor (Eqn. 5):
         f = 64 / Re
 
-    Turbulent Friction Factor - Haaland Equation (Eqn. 7):
+    Turbulent Friction Factor - Haaland Equation (Eqn. 6):
         1 / √f = -1.8 log₁₀[((ε / D) / 3.7)^1.11 + 6.9 / Re ]
 
-    Fluid Properties (Eqn. 8):
+    Fluid Properties (Eqn. 7):
         ρ = ρ(T,P)
         μ = μ(T,P)
 
-    Hydraulic Power Required (Eqn. 9):
+    Hydraulic Power Required (Eqn. 8):
         P_hydraulic = ΔP * V̇
 
-    Volumetric Flow Rate (Eqn. 10):
+    Volumetric Flow Rate (Eqn. 9):
         V̇ = ṁ / ρ
 INPUTS:
     - temperature: The temperature of the water flowing through the pipe in °C
@@ -93,52 +90,54 @@ pipeDiameter    = float(input("Enter the internal diameter of the pipe (m): "))
 pipeRoughness   = float(input("Enter the roughness of the inside surface of the pipe (m): "))
 
 def main():
-    # Get fluid properties from CoolProp
+    # Get fluid properties from CoolProp (Eqn. 8)
     density = CP.PropsSI("D", "T", temperature + 273.15, "P", pressure, FLUID)
     viscosity = CP.PropsSI( "VISCOSITY", "T", temperature + 273.15, "P", pressure, FLUID)
 
-    # Pipe cross-sectional area
+    # Pipe cross-sectional area (Eqn. 2)
     area = math.pi * pipeDiameter**2 / 4
 
-    # Average fluid velocity
+    # Average fluid velocity (Eqn. 3)
     velocity = massFlowRate / (density * area)
 
-    # Reynolds number
+    # Reynolds number (Eqn. 4)
     reynoldsNumber = (density * velocity * pipeDiameter / viscosity)
 
     # Determine flow regime and friction factor
     if reynoldsNumber < 2300:
         flowRegime = "Laminar"
+
+        # Friction factor for laminar flow (Eqn. 6)
         frictionFactor = 64 / reynoldsNumber
     elif reynoldsNumber > 4000:
         flowRegime = "Turbulent"
 
-        # Haaland equation
+        # Haaland equation (Eqn. 7)
         frictionFactor = (
             -1.8 * math.log10(((pipeRoughness / pipeDiameter) / 3.7)**1.11 + 6.9 / reynoldsNumber))**-2
     else:
         flowRegime = "Transitional"
         frictionFactor = float("nan")
 
-    # Darcy-Weisbach major pressure loss
+    # Darcy-Weisbach major pressure loss (Eqn. 5)
     pressureDrop = frictionFactor * (pipeLength / pipeDiameter) * (density * velocity**2 / 2)
 
-    # Volumetric flow rate
+    # Volumetric flow rate (Eqn. 10)
     volumetricFlowRate = massFlowRate / density
 
-    # Hydraulic power required to overcome pipe friction
+    # Hydraulic power required to overcome pipe friction (Eqn. 9)
     hydraulicPower = pressureDrop * volumetricFlowRate
 
-    print(f"Density: {density:.3f} kg/m³")
+    print(f"\nDensity: {density:.3f} kg/m³")
     print(f"Viscosity: {viscosity:.6e} Pa·s")
     print(f"Pipe Area: {area:.6f} m²")
     print(f"Velocity: {velocity:.3f} m/s")
     print(f"Reynolds Number: {reynoldsNumber:.1f}")
     print(f"Flow Regime: {flowRegime}")
     print(f"Friction Factor: {frictionFactor:.6f}")
-    print(f"Pressure Drop: {pressureDrop:.2f} Pa")
     print(f"Volumetric Flow Rate: {volumetricFlowRate:.6f} m³/s")
     print(f"Hydraulic Power: {hydraulicPower:.2f} W")
+    print(f"Pressure Drop: {pressureDrop:.2f} Pa")
 
 if __name__ == "__main__":
     main()
