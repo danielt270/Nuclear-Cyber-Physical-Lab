@@ -84,7 +84,7 @@ import math
 import CoolProp.CoolProp as CP
 
 # Constants
-FLUID              = "Water"
+FLUID = "Water"
 
 # Inputs
 temperature     = float(input("Enter the temperature of the water in the pipe (°C): "))
