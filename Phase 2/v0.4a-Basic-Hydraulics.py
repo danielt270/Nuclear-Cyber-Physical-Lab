@@ -21,7 +21,7 @@ ASSUMPTIONS:
     - steady-state flow
     - single-phase water
     - constant pipe diameter
-    - pipe is horizontal with no height change
+    - no elevation change along the pipe
     - kinetic and potential energy changes due to elevation are neglected
     - water is treated as incompressible
     - minor losses from fittings and valves are neglected
