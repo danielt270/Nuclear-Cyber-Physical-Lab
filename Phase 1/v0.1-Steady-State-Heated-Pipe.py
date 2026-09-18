@@ -41,7 +41,7 @@ INPUTS:
     - massFlowRate: The mass flow rate of water in kg/s
     - heaterPower: The power of the heater in W
 
-OUTPUT:
+OUTPUTS:
     - outletTemp: The temperature of the coolant after passing through the heater and cooler.
     - cp: The specific heat capacity of the water as a function of time
 ============================================================================================================

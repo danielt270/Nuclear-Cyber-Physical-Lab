@@ -63,7 +63,7 @@ INPUTS:
     - pipeDiameter: The internal diameter of the pipe in m
     - pipeRoughness: The roughness of the inside surface of the pipe in m
 
-OUTPUT:
+OUTPUTS:
     - density: The density of the water in kg/m³
     - viscosity: The dynamic viscosity of the water in Pa·s
     - area: The cross-sectional area of the pipe in m²
