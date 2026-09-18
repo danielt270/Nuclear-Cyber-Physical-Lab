@@ -178,15 +178,17 @@ def find_operating_point(density, viscosity):
     # Starting with zero flow.
     lowerFlow = 0.0
 
-    # At zero flow, pump pressure is at its maximum.
+    # At zero flow, pump pressure is at its maximum (equal to PUMP_SHUTOFF_PRESSURE)
     lowerDifference = calculate_pump_pressure(lowerFlow)
 
     # Estimate an upper flow limit where the pump pressure reaches zero.
     upperFlow = math.sqrt(PUMP_SHUTOFF_PRESSURE / PUMP_CURVE_COEFFICIENT)
 
     for _ in range(100):
+        # Select the midpoint between the lower and upper flow limits
         middleFlow = (lowerFlow + upperFlow) / 2
 
+        # Get the pump pressure (y-value) from the pump/pipe curves at the current flow rate (x-value)
         pumpPressure = calculate_pump_pressure(middleFlow)
         pipePressure = calculate_pipe_pressure_drop(middleFlow, density, viscosity)
 
@@ -194,14 +196,17 @@ def find_operating_point(density, viscosity):
         if pipePressure is None:
             return None
 
+        # Compare the two pressures to determine if the operating point has been reached
         difference = pumpPressure - pipePressure
 
         # The operating point is where pump pressure = pipe pressure
         if abs(difference) < 0.01:
             return middleFlow
 
+        # Pump pressure is greater, so the operating point is at a higher flow rate
         if difference > 0:
             lowerFlow = middleFlow
+        # Pump pressure is less, so the operating point is at a lower flow rate
         else:
             upperFlow = middleFlow
 
