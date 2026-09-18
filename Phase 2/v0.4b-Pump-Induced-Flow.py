@@ -67,8 +67,8 @@ EQUATIONS:
     Pipe Cross-Sectional Area (Eqn. 3):
         A = πD² / 4
 
-    Fluid Velocity (Eqn. 4):
-        v = ṁ / (ρ *A)
+    AverageFluid Velocity (Eqn. 4):
+        v = V̇ / A
 
     Reynolds Number (Eqn. 5):
         Re = ρ * v * D / μ
@@ -117,14 +117,98 @@ import math
 import CoolProp.CoolProp as CP
 
 # Constants
-FLUID              = "Water"
-PUMP_SHUTOFF_PRESSURE = 100000  # Pa
+FLUID                  = "Water"
+PUMP_SHUTOFF_PRESSURE  = 100000       # Pa
+PUMP_CURVE_COEFFICIENT = 20_000_000  # Pa / (m^3/s)^2
 
 # Inputs
+temperature   = float(input("Enter the temperature of the water in the pipe (°C): "))
+pressure      = float(input("Enter the pressure of the water in the pipe (Pa): "))
+pipeLength    = float(input("Enter the length of the pipe (m): "))
+pipeDiameter  = float(input("Enter the internal diameter of the pipe (m): "))
+pipeRoughness = float(input("Enter the roughness of the inside surface of the pipe (m): "))
 
+# Determines flow regime and friction factor
+def calculate_friction_factor(reynoldsNumber):
+    if reynoldsNumber < 2300:
+        flowRegime = "Laminar"
+
+        # Friction factor for laminar flow (Eqn. 6)
+        frictionFactor = 64 / reynoldsNumber
+    elif reynoldsNumber > 4000:
+        flowRegime = "Turbulent"
+
+        # Haaland equation (Eqn. 7)
+        frictionFactor = (
+            -1.8 * math.log10(((pipeRoughness / pipeDiameter) / 3.7)**1.11 + 6.9 / reynoldsNumber))**-2
+    else:
+        flowRegime = "Transitional"
+        frictionFactor = None
+
+    return flowRegime, frictionFactor
+
+# Calculates the pressure loss through the pipe for a given volumetric flow rate
+def calculate_pipe_pressure_drop(volumetricFlowRate, density, viscosity):
+    # Pipe cross-sectional area (Eqn. 3)
+    area = math.pi * pipeDiameter**2 / 4
+
+    # Average fluid velocity (Eqn. 4)
+    velocity = volumetricFlowRate / area
+
+    # Reynolds number (Eqn. 5)
+    reynoldsNumber = (density * velocity * pipeDiameter / viscosity)
+
+    flowRegime, frictionFactor = calculate_friction_factor(reynoldsNumber)
+
+    if frictionFactor is None:
+        return None
+
+    # Darcy-Weisbach Pressure Loss (Eqn. 8)
+    pressureDrop = frictionFactor * (pipeLength / pipeDiameter) * (density * velocity**2 / 2)
+
+    return pressureDrop
+
+# Calculates the pressure rise produced by the pump for a given volumetric flow rate
+def calculate_pump_pressure(volumetricFlowRate):
+    # Pump Curve (Eqn. 1)
+    return (PUMP_SHUTOFF_PRESSURE - PUMP_CURVE_COEFFICIENT * volumetricFlowRate**2)
+
+# Finds the operating point where the pump pressure rise equals the pipe pressure loss
+def find_operating_point(density, viscosity):
+    # Starting with zero flow.
+    lowerFlow = 0.0
+
+    # At zero flow, pump pressure is at its maximum.
+    lowerDifference = calculate_pump_pressure(lowerFlow)
+
+    # Estimate an upper flow limit where the pump pressure reaches zero.
+    upperFlow = math.sqrt(PUMP_SHUTOFF_PRESSURE / PUMP_CURVE_COEFFICIENT)
+
+    for _ in range(100):
+        middleFlow = (lowerFlow + upperFlow) / 2
+
+        pumpPressure = calculate_pump_pressure(middleFlow)
+        pipePressure = calculate_pipe_pressure_drop(middleFlow, density, viscosity)
+
+        # Transitional flow is not modeled yet
+        if pipePressure is None:
+            return None
+
+        difference = pumpPressure - pipePressure
+
+        # The operating point is where pump pressure = pipe pressure
+        if abs(difference) < 0.01:
+            return middleFlow
+
+        if difference > 0:
+            lowerFlow = middleFlow
+        else:
+            upperFlow = middleFlow
+
+    return middleFlow
 
 def main():
-    
+
 
 if __name__ == "__main__":
     main()
