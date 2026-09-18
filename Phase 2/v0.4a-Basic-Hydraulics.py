@@ -17,12 +17,12 @@ MODEL:
             ──────────────────────────────────────────   ↕                                                  
             │<----------------  L  ------------------>│
 
-                                where
-                        ṁ = mass flow rate
-                        L = pipe length
-                        D = pipe internal diameter
-                        ΔP = pressure loss through the pipe   
-                        
+                            where
+                ṁ = mass flow rate
+                L = pipe length
+                D = pipe internal diameter
+                ΔP = pressure loss through the pipe   
+
 ASSUMPTIONS:
     - steady-state flow
     - single-phase water
