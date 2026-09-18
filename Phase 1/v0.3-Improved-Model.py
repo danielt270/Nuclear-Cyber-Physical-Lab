@@ -64,7 +64,7 @@ INPUTS:
     - simulationTime: The total simulation time in seconds
     - timeStep: The simulation timestep in seconds
 
-OUTPUT:
+OUTPUTS:
     - tankTemp: The temperature of the water in the tank as a function of time
     - heatLoss: The rate of heat lost from the tank as a function of time
     - enthalpy: The specific enthalpy of the water as a function of time
