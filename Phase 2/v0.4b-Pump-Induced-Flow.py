@@ -113,4 +113,18 @@ OUTPUT:
     - pressureDrop: The pressure loss through the pipe in Pa
     - hydraulicPower: The hydraulic power delivered to the flow in W
 """
+import math
+import CoolProp.CoolProp as CP
 
+# Constants
+FLUID              = "Water"
+PUMP_SHUTOFF_PRESSURE = 100000  # Pa
+
+# Inputs
+
+
+def main():
+    
+
+if __name__ == "__main__":
+    main()
