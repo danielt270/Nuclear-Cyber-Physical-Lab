@@ -25,7 +25,7 @@ ASSUMPTIONS:
     - kinetic and potential energy changes due to elevation are neglected
     - water is treated as incompressible
     - minor losses from fittings and valves are neglected
-    - mass flow rate is specified directly
+    - constant mass flow rate
 
 EQUATIONS:
     Pipe Cross-Sectional Area (Eqn. 1):
@@ -35,10 +35,10 @@ EQUATIONS:
         v = ṁ / (ρ * A)
 
     Reynolds Number (Eqn. 3):
-        Re = ρvD / μ
+        Re = ρ * v * D / μ
 
     Darcy-Weisbach Pressure Loss (Eqn. 4):
-        ΔP = f(L/D)(ρ * v² / 2)
+        ΔP = f(L / D)(ρ * v² / 2)
 
     Laminar Friction Factor (Eqn. 5):
         f = 64 / Re
